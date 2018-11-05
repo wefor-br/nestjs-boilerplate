@@ -5,7 +5,7 @@ import { UserRoutesToken } from './user.constants';
 import { IServerRequest } from '../types/main.types';
 import { AuthValidationInterceptor } from '../authorization/interceptors/auth.validation.interceptor';
 import { AuthPermissions } from '../authorization/decorators/autorization.decorators';
-import { IUpdateUserDTO } from './user.types';
+import { UpdateUserDTO } from './user.dto';
 
 @UseInterceptors(AuthValidationInterceptor)
 @Controller(UserRoutesToken.root)
@@ -32,7 +32,7 @@ export class UsersController {
 
     @AuthPermissions(['edit'])
     @Put(`/${UserRoutesToken.singleUser}`)
-    public async updateUserById(@Req() req: IServerRequest,@Param() params: {userId: string}, @Body() body: IUpdateUserDTO) {
+    public async updateUserById(@Req() req: IServerRequest,@Param() params: {userId: string}, @Body() body: UpdateUserDTO) {
 
         const ans = await this.userService.updateOne({_id: params.userId}, body);
 

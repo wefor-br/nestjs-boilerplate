@@ -68,10 +68,5 @@ export interface IFindUserByProvider {
 }
 
 export interface IUpdateUserDTO {
-    email?: string;
-    firstName?: string;
-    lastName?: string;
-    gender?: string;
-    password?: string;
-    oldPassword?: string;
+
 }
