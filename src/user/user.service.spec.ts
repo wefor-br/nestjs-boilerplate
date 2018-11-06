@@ -1,8 +1,10 @@
 import { UsersService } from './user.service';
 import { ICreateUser } from './user.types';
+import { RepositoryService } from '../repository/repository.service';
 
 describe('User Service', () => {
     let userService: UsersService;
+    let repositoryService: RepositoryService;
     let userModel: any;
     let userRepo;
 
@@ -10,6 +12,11 @@ describe('User Service', () => {
         userModel =  {
             create: jest.fn(),
             findById: jest.fn(),
+        };
+
+        // @ts-ignore
+        repositoryService = {
+            getModel: jest.fn()
         };
 
         userRepo = {
@@ -28,7 +35,7 @@ describe('User Service', () => {
                 lastName: 'test2'
             }
         };
-        userService = new UsersService(userModel);
+        userService = new UsersService(userModel, repositoryService);
     });
 
     describe('create', () => {

@@ -1,0 +1,28 @@
+version: '3'
+services:
+
+  mongodb:
+    image: mongo
+    networks:
+      - nest-network
+    ports:
+      - "27017"
+    volumes:
+      - "~/data:/data/db"
+
+  nest1:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    image: wefor-br/nest-boilerplate
+    container_name: nest-boilerplate-1
+    ports:
+      - "3000:3000"
+    networks:
+      - nest-network
+    depends_on:
+      - "mongodb"
+networks:
+  nest-network:
+    driver: bridge
+

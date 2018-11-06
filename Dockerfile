@@ -1,11 +1,12 @@
-FROM node:9.11.1
+FROM node:8.12.0
 
-COPY . /dist
+COPY . /var/www
 
-WORKDIR /dist
+WORKDIR /var/www
 
-RUN npm install -g npm@">=6.0.0 < 7.0.0"
 RUN npm install
+RUN npm install typescript -g
+RUN npm run build
 RUN npm install pm2 -g
 ENV DOCKER_ENV true
 # CMD ["npm","run start:prod"]

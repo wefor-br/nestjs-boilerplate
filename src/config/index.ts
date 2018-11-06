@@ -27,7 +27,7 @@ const rootPath = process.cwd();
 const Config: IConfig = {
     development: {
         rootPath,
-        db: 'mongodb://localhost/nest-test',
+        db: 'mongodb://mongodb/nest-test',
         port: 3000,
         jwtSecret: 'ASD#3dad@#FA#RAffdfd3',
         origin: 'localhost',

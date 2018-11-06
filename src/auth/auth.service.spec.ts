@@ -9,6 +9,7 @@ describe('Auth Service', () => {
     let usersService: any;
     let facebookProvider: any;
     let googleProvider: any;
+    let repositoryService: any;
 
     beforeEach(async () => {
         usersService = {
@@ -16,6 +17,10 @@ describe('Auth Service', () => {
             findUserForLogin: jest.fn(),
             findUserByEmail: jest.fn(),
             create: jest.fn(() => Promise.resolve(true))
+        };
+
+        repositoryService = {
+            getModel: jest.fn()
         };
 
         facebookProvider = {
@@ -29,7 +34,7 @@ describe('Auth Service', () => {
             requestProviderRedirectUri: jest.fn(),
             requestProviderLogIn: jest.fn(),
         };
-        authService = new AuthService(usersService, facebookProvider, googleProvider);
+        authService = new AuthService(usersService, repositoryService, facebookProvider, googleProvider);
     });
 
     describe('validateUser', () => {
